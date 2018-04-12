@@ -37,12 +37,14 @@ int main(){
 
         for(int j = 0; j < 200; j++)
         {
+            // Calculate the distribution of zeros and ones
             if(s.substr(j,1)== "0")
                 num_of_zeros++;
 
             if(s.substr(j,1)== "1")
                 num_of_ones++;
 
+            // Calculate the longest sequence
             if (s.substr(j,1) == s.substr(j+1,1))
                 sequence++;
             else
@@ -52,13 +54,13 @@ int main(){
                 sequence = 1;
             }
         }
-//
-//        numbers[i][1] = num_of_zeros;
-//        numbers[i][2] = num_of_ones;
+
+        numbers[i][1] = num_of_zeros;
+        numbers[i][2] = num_of_ones;
 
         cout << i+1 << ": " << longest_seq << endl;
 
-        //cout << numbers[i][1] << ", " << numbers[i][2] << endl;
+        cout << i+1 << ": " << numbers[i][1] << ", " << numbers[i][2] << endl;
 
         if(longest_seq < test2_lim)
             test2_humans.push(i+1);
@@ -91,6 +93,8 @@ int main(){
     }
     cout << endl;
 
+    cout << "TEST 3: Variance" << endl;
+
     cout << "--*--*--*--*--*--*--*--*--*--*--*--" << endl;
 
     return 0;
@@ -101,6 +105,10 @@ int main(){
 // Ojämnt fördelat --> troligtvis en dator
 // Jämnt fördelat med små frekvenser i talföljd --> människa
 // Jämnt fördelat med stora frekvenser i talföljd --> dator
+
+// Jag vill räkna diffen mellan nollor och ettor för varje person.
+// Spara alla diffar och hitta medelvärdet för diff. Använda medelvärdesdiffen för att beräkna variansen
+
 
 
 // FRÅGOR:
