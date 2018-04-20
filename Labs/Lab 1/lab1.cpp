@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <queue>
+#include <math.h>
 
 using namespace std;
 
@@ -10,7 +11,7 @@ int main(){
 
     // Read file and assign to array
     ifstream file("data.txt");
-    string tosses[60];
+    string tosses[61];
 
     if(file.is_open())
     {
@@ -23,7 +24,9 @@ int main(){
     // Variables
     int num_of_zeros = 0;
     int num_of_ones = 0;
-    int numbers[60][2];
+    int numbers[61][2];
+    int diff[61];
+    double sum_mean = 0;
     int sequence = 1;
     int longest_seq = 0;
     queue<int> test1_humans;
@@ -57,10 +60,14 @@ int main(){
 
         numbers[i][1] = num_of_zeros;
         numbers[i][2] = num_of_ones;
+        diff[i] = fabs(100-num_of_ones);
 
-        cout << i+1 << ": " << longest_seq << endl;
+        sum_mean += diff[i];
 
-        cout << i+1 << ": " << numbers[i][1] << ", " << numbers[i][2] << endl;
+        cout << i+1 << " - Longest sequence: " << longest_seq << endl;
+        cout << i+1 << " - Distribution: " << numbers[i][1] << ", " << numbers[i][2] << endl;
+        cout << i+1 << " - Difference: " << diff[i] << endl;
+        cout << sum_mean << endl << endl;
 
         if(longest_seq < test2_lim)
             test2_humans.push(i+1);
@@ -71,15 +78,41 @@ int main(){
         longest_seq = 0;
     }
 
+    sum_mean = sum_mean/60;
+
+    cout << "Final sum_mean: " << sum_mean << endl;
+
+    double sum = 0;
+    double s_dev = 0;
+    double var = 0;
+
+    for(int i = 0; i < 60; i++)
+    {
+        sum += pow((diff[i] - sum_mean),2);
+    }
+
+    var = sum/60;
+    s_dev = sqrt(var);
+
+    cout << "Variance: " << var << endl;
+    cout << "Standard deviation: " << s_dev << endl << endl;
+
+
+    for(int i = 0; i < 60; i++)
+    {
+        sum += pow((diff[i] - sum_mean),2);
+    }
+
+
     // --- FINAL RESULT --- //
 
-    cout << "--*--*--*--*-- RESULT --*--*--*--*--" << endl;
+    cout << "--*--*--*--*-- RESULT --*--*--*--*--" << endl << endl;
 
     cout << "TEST 1: Count number of zeros and ones" << endl;
     cout << "If there is more than _ difference from 50/50 then the random generator is human/computer." << endl;
     cout << "If there is less than _ difference from 50/50 then the random generator is human/computer." << endl;
     cout << "The humans are: " << endl;
-    cout << "Show humans here..." << endl;
+    cout << "Show humans here..." << endl << endl;
 
     cout << "TEST 2: Count the longest sequence with the same number" << endl;
     cout << "If the sequence is longer or equal to 7 then the random generator is computer." << endl;
@@ -91,7 +124,7 @@ int main(){
        cout << test2_humans.front() << ", ";
         test2_humans.pop();
     }
-    cout << endl;
+    cout << endl << endl;
 
     cout << "TEST 3: Variance" << endl;
 
