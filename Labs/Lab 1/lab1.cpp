@@ -67,8 +67,6 @@ int main(){
         if(diff[i] > 10)
             test1_humans.push(i+1);
 
-        sum_mean += diff[i];
-
         //cout << i+1 << " - Longest sequence: " << longest_seq << endl;
         //cout << i+1 << " - Distribution: " << numbers[i][1] << ", " << numbers[i][2] << endl;
         //cout << i+1 << " - Difference: " << diff[i] << endl << endl;
@@ -80,6 +78,8 @@ int main(){
         num_of_ones = 0;
         sequence = 1;
         longest_seq = 0;
+
+        sum_mean += diff[i];
     }
 
     double sum = 0;
@@ -102,6 +102,7 @@ int main(){
     string possible_outcome[] = {"1111", "1110", "1101", "1100", "1011", "1010", "1001", "1000", "0111", "0110", "0101", "0100", "0011", "0010", "0001", "0000"};
     int dist[61][51];
     int num_of_dist[61][17] = {{0}};
+    double dist_mean_mean = 0;
 
     for(int i = 0; i < 60; i++) //for every person
     {
@@ -141,19 +142,27 @@ int main(){
 
         dist_mean = dist_mean/16;
 
-        if(dist_mean > 1.5)
+        if(dist_mean > 1.4)
             test3_humans.push(i+1);
 
-        //cout << "Dist mean: " << dist_mean << endl << endl;
+        dist_mean_mean += dist_mean;
+
+        cout << "Dist mean: " << dist_mean << endl << endl;
     }
+
+    cout << dist_mean_mean << endl;
+
+    dist_mean_mean = dist_mean_mean/60;
+
+    cout << dist_mean_mean << endl;
 
     // --- FINAL RESULT --- //
 
     cout << "--*--*--*--*-- RESULT --*--*--*--*--" << endl << endl;
 
     cout << "TEST 1: Count number of zeros and ones" << endl;
-    cout << "If there is more than 10 difference from 50/50 then the random generator is computer." << endl;
-    cout << "If there is less than or equal to 10 difference from 50/50 then the random generator is human." << endl;
+    cout << "If there is more than 10 difference from 50/50 then the random generator is a human." << endl;
+    cout << "If there is less than or equal to 10 difference from 50/50 then the random generator is a computer." << endl;
     cout << "The humans are: " << endl;
 
     while(!test1_humans.empty())
