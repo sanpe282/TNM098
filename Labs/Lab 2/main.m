@@ -9,6 +9,10 @@ xMax = max(A(:,5));
 yMin = min(A(:,6));
 yMax = max(A(:,6));
 
+figure;
+
+h = animatedline;
+
 
 % Plot all x- and y-values
 for i = 1:size(A(:,2))
@@ -27,9 +31,24 @@ for i = 1:size(A(:,2))
         color = 'c.';
     end
     
+    if (sec >= 0) && (sec <= 60000)
+        color2 = 'r';
+    elseif (sec > 60000) && (sec <= 120000)
+        color2 = 'g';
+    elseif (sec > 120000) && (sec <= 180000)
+        color2 = 'b';
+    elseif (sec > 180000) && (sec <= 240000)
+        color2 = 'm';
+    else
+        color2 = 'c';
+    end
+    
     duration = A(:,3);
-    plot(A(i,5),A(i,6), color, 'MarkerSize', 0.05 * duration(i));
+    plot(A(i,5),A(i,6), color, 'MarkerSize', 0.01 * duration(i));
+    plot([A(i,5) A(i+1,5)], [A(i,6) A(i+1,6)], color2)
+    addpoints(h,A(i,5),A(i,6));
     axis([xMin xMax yMin yMax]);
+    drawnow
     hold on;
     
 end
@@ -52,9 +71,8 @@ title(['DBSCAN Clustering (\epsilon = ' num2str(epsilon) ', MinPts = ' num2str(M
 
 %% VISUALIZATION
 
-
-
 figure
+m = animatedline
 
 for i = 1:size(IDX,1)
     
@@ -77,6 +95,7 @@ for i = 1:size(IDX,1)
         
         subplot(5,1,j)
         plot(matrix(i,1),matrix(i,2),Style,'MarkerSize',MarkerSize,'Color',Color);
+        %addpoints(m,matrix(i,1),matrix(i,2))
         axis([0 300 0 2]);
         hold on;
     end
