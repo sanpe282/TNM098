@@ -1,0 +1,35 @@
+% TNM098 - Lab 3.1
+% Sandra Pettersson and Isabelle Rosenquist
+
+disp('')
+disp('Starting the program.');
+
+images = readImage();
+
+% -----------------------------------%
+%    Process the images in the DB  
+% -----------------------------------%
+
+% 1. Calculate colour content
+meanRGB(images);
+
+% 2. Calculate colour and luminance distribution around the central point
+centerPointCalc(images);
+
+% 3. Calculate colour and luminance distribution around several points
+multiplePointsCalc(images);
+
+% ------------------------------------------%
+%    Choose image to make comparison with   %
+%    Options: 1-12                          %
+% ------------------------------------------%
+theImage = 7;
+
+% ------------------------------------------------------------------%
+%    Choose the type of comparison                                  %
+%    Options: all, colorContent, rgbOne, lumOne, rgbFive, lumFive   %
+% ------------------------------------------------------------------%
+comparison = 'all';
+
+% 4. Compare the images
+compareImage(comparison, theImage);

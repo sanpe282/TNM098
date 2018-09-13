@@ -4,15 +4,9 @@ function [meanLumArea] = lumDistribution(image, x, y, r)
     
     squareLab = rgb2lab(square);
     
-    lumArea = squareLab(:,:,1)
+    lumArea = squareLab(:,:,1);
     
     meanLumArea = zeros(100, 100, 3);
-    meanLumArea = mean2(lumArea)
-
-    figure
-    subplot(1,2,1);
-    imshow(square);
-    subplot(1,2,2);
-    imshow(meanLumArea);
+    meanLumArea = mean2(lumArea);
 
 end

@@ -6,15 +6,9 @@ function [meanRGBArea] = colorDistribution(image, x, y, r)
     meanG = mean2(square(:,:,2));
     meanB = mean2(square(:,:,3));
 
-    meanRGBArea = zeros(100, 100, 3);
-    meanRGBArea(:,:,1) = meanR/255;
-    meanRGBArea(:,:,2) = meanG/255;
-    meanRGBArea(:,:,3) = meanB/255;
-    
-%     figure
-%     subplot(1,2,1);
-%     imshow(square);
-%     subplot(1,2,2);
-%     imshow(meanRGBArea);
-
+    meanRGBArea = zeros(1, 3);
+    meanRGBArea(1,1) = meanR/255;
+    meanRGBArea(1,2) = meanG/255;
+    meanRGBArea(1,3) = meanB/255;
+   
 end

@@ -43,6 +43,9 @@ for i = 1:size(A(:,2))
         color2 = 'c';
     end
     
+    color = 'k.';
+    color2 = 'k';
+    
     duration = A(:,3);
     plot(A(i,5),A(i,6), color, 'MarkerSize', 0.01 * duration(i));
     plot([A(i,5) A(i+1,5)], [A(i,6) A(i+1,6)], color2)
