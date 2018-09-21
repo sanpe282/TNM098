@@ -52,15 +52,62 @@ while(getline(newString, line, delim))
     line.erase(remove(line.begin(), line.end(), ','), line.end());
     line.erase(remove(line.begin(), line.end(), '"'), line.end());
     line.erase(remove(line.begin(), line.end(), '*'), line.end());
+    line.erase(remove(line.begin(), line.end(), ' '), line.end());
+    line.erase(remove(line.begin(), line.end(), '\n'), line.end());
     transform(line.begin(), line.end(), line.begin(), ::tolower);
+
     myArray.push_back(line);
 
 }
 
+vector<int>lineAscii;
+vector<int>myAscii;
+
 for(int i = 0 ; i < myArray.size(); i++)
 {
-    cout << myArray[i] << endl;
+//    if(!myArray[i].empty())
+//        cout << myArray[i] << endl;
+//    else
+//        cout << "Empty slot!" << endl;
+
+    string word = myArray[i];
+    cout << word << endl;
+    for (int j=0; j < word.length(); j++)
+    {
+        char w = word.at(j);
+        cout << int(w) << " ";
+        lineAscii.push_back(w);
+
+    }
+
+    myAscii.push_back(lineAscii);
+    lineAscii.clear();
+    word = "";
+    cout << endl;
 }
+
+for(int i = 0; i< myAscii.size(); i++)
+{
+    cout << myAscii[i] << endl;
+}
+
+
+//string word = myArray[0];
+//for(int i=0; i < word.length(); i++)
+//{
+//    char x = word.at(i);
+//    cout << int(x) << " ";
+//}
+
+/* vector<string> myrow;
+ * string myLine = myArray[2];
+ *
+ * myLine.erase(remove(myLine.begin(), myLine.end(), ' '), myLine.end());
+ * myrow.push_back(myLine);
+ *
+ * cout << myrow[0] << endl;
+ */
+
 
 
 /*
