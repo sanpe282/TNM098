@@ -121,7 +121,7 @@ function compareImage(comparison, theImage)
     end
     
     [temp, order] = sort(unsortedVec(2,:));
-    sortedVec = unsortedVec(:,order);
+    sortedVec = unsortedVec(:,order)
     num = sortedVec(1,2);
     
     % 5. Print result
